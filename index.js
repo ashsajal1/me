@@ -1,14 +1,15 @@
-document.documentElement.classList.add("js");
-
 const header = document.getElementById("siteHeader");
 const nav = document.getElementById("nav");
 const navToggle = document.getElementById("navToggle");
 
+/* Read layout state before mutating, so the first scrollY isn't a forced reflow */
+const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
+onScroll();
+
+document.documentElement.classList.add("js");
 document.getElementById("year").textContent = new Date().getFullYear();
 
 /* Header border once the page scrolls */
-const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
-onScroll();
 window.addEventListener("scroll", onScroll, { passive: true });
 
 /* Mobile menu */
