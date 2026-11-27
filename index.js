@@ -2,14 +2,13 @@ const header = document.getElementById("siteHeader");
 const nav = document.getElementById("nav");
 const navToggle = document.getElementById("navToggle");
 
-/* Read layout state before mutating, so the first scrollY isn't a forced reflow */
+/* Header border once the page scrolls. No initial call: reading scrollY during
+   parse forces a reflow, and scroll restoration fires a scroll event anyway. */
 const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
-onScroll();
 
 document.documentElement.classList.add("js");
 document.getElementById("year").textContent = new Date().getFullYear();
 
-/* Header border once the page scrolls */
 window.addEventListener("scroll", onScroll, { passive: true });
 
 /* Mobile menu */
